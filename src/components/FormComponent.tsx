@@ -10,8 +10,8 @@ export default function FormComponent({
   handleOnSubmit,
 }: FormComponentProps) {
   return (
-    <div>
-      <form onSubmit={handleOnSubmit}>
+    <div className="FormComponent">
+      <form onSubmit={handleOnSubmit} className="InsideForm">
         <label htmlFor="title">Title</label>
         <input
           type="text"

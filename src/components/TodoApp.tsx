@@ -63,9 +63,9 @@ export default function TodoApp() {
       ]);
     } else {
       setTodosList((prevList) => prevList.map(
-        (todo) => todo.id === todo.id 
-        ? {...todo, title: todo.title} 
-        : {...todo}
+        (ent) => ent.id === todo.id
+        ? {...ent, title: todo.title} 
+        : {...ent}
       ));
     }
 
@@ -106,7 +106,7 @@ export default function TodoApp() {
   // Main return
 
   return (
-    <div>
+    <div className="TodoApp">
       <h1>Todo List App</h1>
       <FormComponent
         {...todo}

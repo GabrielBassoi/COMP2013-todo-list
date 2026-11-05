@@ -182,3 +182,75 @@
     border-right-color: var(--border);
   }
 }
+  
+.TodoApp{
+  width: 400px;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 0 auto;
+}
+
+.FormComponent{
+  width: 90%;
+  padding: 5px;
+  margin-bottom: 20px;
+  margin-top: 50px;
+  display: flex;
+  justify-content: space-between;
+}
+
+.FormComponent input {
+  margin: 0 30px;
+}
+
+.FormComponent button {
+  width: 60px;
+  height: 30px;
+  border: none;
+  border-radius: 7px;
+  background-color: #024900;
+}
+
+.TodosContainer {
+  width: 100%;
+}
+
+.TodoCard{
+  margin: 0 auto;
+  padding-left: 10px;
+  padding-right: 10px;
+  width: 90%;
+  height: 45px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-radius: 8px;
+}
+
+.TodoCard button {
+  width: 60px;
+  height: 28px;
+  margin-left: 5px;
+  border: 1px #ffffff23 solid;
+  border-radius: 7px;
+}
+
+#delete {
+  background-color: #490000;
+}
+
+#edit {
+  background-color: #0d0049;
+}
+
+.TodoCard:nth-child(odd) {
+  background-color: #1e2028;
+}
+
+.InsideForm {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+}
