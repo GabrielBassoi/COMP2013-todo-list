@@ -9,9 +9,9 @@ export interface TodoCardProps {
 }
 
 export interface TodoCardFunctions extends TodoCardProps {
-    handleTodoCheck: (e: ChangeEvent<HTMLInputElement>, id: string) => void;
-    handleDeleteTodo: (id: string) => void;
-    handleEditTodo: (id: string) => void;
+  handleTodoCheck: (e: ChangeEvent<HTMLInputElement>, id: string) => void;
+  handleDeleteTodo: (id: string) => void;
+  handleEditTodo: (id: string) => void;
 }
 
 export interface TodosContainerProps {
@@ -52,14 +52,24 @@ export default function TodoApp() {
   const handleOnSubmit = (e: SubmitEvent<HTMLFormElement>) => {
     e.preventDefault(); // prevent the default refresh action from submitting the form
 
-    setTodosList((prevList) => [
-      ...prevList,
-      {
-        id: crypto.randomUUID(),
-        title: todo.title,
-        checked: false,
-      },
-    ]);
+    if (todo.id === "") {
+      setTodosList((prevList) => [
+        ...prevList,
+        {
+          id: crypto.randomUUID(),
+          title: todo.title,
+          checked: false,
+        },
+      ]);
+    } else {
+      setTodosList((prevList) => prevList.map(
+        (todo) => todo.id === todo.id 
+        ? {...todo, title: todo.title} 
+        : {...todo}
+      ));
+    }
+
+    // Reset todo
     setTodo({
       id: "",
       title: "",
@@ -80,14 +90,18 @@ export default function TodoApp() {
 
   // 4. Handle deleting an entry using the delete button
   const handleDeleteTodo = (id: string) => {
-    setTodosList((prevList) => prevList.filter((todo) => todo.id != id))
-  }
+    setTodosList((prevList) => prevList.filter((todo) => todo.id != id));
+  };
 
   // 5. Handle editing and entry using the edit button
   const handleEditTodo = (id: string) => {
-    const todoEntry = todosList.find((entry) => entry.id === id) || {title: "", id:"", checked:false};
-    setTodo({...todoEntry});
-  }
+    const todoEntry = todosList.find((entry) => entry.id === id) || {
+      title: "",
+      id: "",
+      checked: false,
+    };
+    setTodo({ ...todoEntry });
+  };
 
   // Main return
 
@@ -99,12 +113,12 @@ export default function TodoApp() {
         handleFormOnChange={handleFormOnChange}
         handleOnSubmit={handleOnSubmit}
       />
-      <TodosContainer 
-        todosList={todosList} 
+      <TodosContainer
+        todosList={todosList}
         handleTodoCheck={handleTodoCheck}
-        handleDeleteTodo={handleDeleteTodo} 
+        handleDeleteTodo={handleDeleteTodo}
         handleEditTodo={handleEditTodo}
-    />
+      />
     </div>
   );
 }
